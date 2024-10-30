@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Movies of the year</title>
+  </head>
+  <body>
+    <div>
+      <h1>Best Movies of the year by [[${name}]]</h1>
+    </div>
+    <div>
+    	<span th:text="${movies}"></span>
+    </div>
+    <div>
+    	<span th:text="${movie}"></span>   
+    </div>
+  </body>
+</html>
