@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Best Movies of the year</title>
+    <div th:replace="~{fragments :: head}"></div>
+    <title>Best Movies</title>
   </head>
   <body>
-    <div>
-      <h1>Best Movies of the year by [[${name}]]</h1>
+    <div th:replace="~{fragments :: header}"></div>
+    <div class="container-xl">
+    	<div class="row">
+    		<div class="col justify-content-center">
+		      <h1 class="d-flex justify-content-center pb-2">Best Movies</h1>
+					<div th:unless="${visible}" th:each="movie : ${movies}" class="fs-3 justify-content-center d-flex"><a class="text-decoration-none" th:href="@{|/movies/${movie.getId()}|}">[[${movie.getTitle()}]]</a></div>
+					<div th:unless="${visible}" th:text="${movie}" class="fs-3 justify-content-center d-flex"></div>
+				</div>	
+    	</div>
     </div>
-    <div>
-    	<span th:text="${movies}"></span>
-    </div>
-    <div>
-    	<span th:text="${movie}"></span>   
-    </div>
+    <div th:replace="~{fragments :: bsScript}"></div>
   </body>
 </html>

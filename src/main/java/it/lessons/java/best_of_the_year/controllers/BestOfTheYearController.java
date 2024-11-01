@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import it.lessons.java.best_of_the_year.Movie;
-import it.lessons.java.best_of_the_year.Song;
+import it.lessons.java.best_of_the_year.model.Movie;
+import it.lessons.java.best_of_the_year.model.Song;
 
 @Controller
 @RequestMapping("/")
@@ -53,57 +53,52 @@ public class BestOfTheYearController {
 		
 		return listSongs;
 	}
+	
+	private boolean isVisible(List<?> list) {
+		return list.isEmpty();
+	}
+	
+	private boolean isVisible(String stringa) {
+		return stringa == null ? false : stringa.trim().length() == 0;
+	}
 
 	@GetMapping("/movies")
-	public String movies(@RequestParam("name") String name, Model model) {
-		model.addAttribute("name", name);
-		String listMovies = "";
-		for(Movie movie : getBestMovies()) {
-			listMovies += movie.getTitle() + ", ";
-		}
-		model.addAttribute("movies", listMovies.substring(0, listMovies.length()-2));
+	public String movies(Model model) {
+		model.addAttribute("visible", isVisible(getBestMovies()));
+		model.addAttribute("movies", getBestMovies());
 
 		return "movies";
 		
 	}
 
 	@GetMapping("/songs")
-	public String songs(@RequestParam("name") String name, Model model) {
-		model.addAttribute("name", name);
-		String listSongs = "";
-		for(Song song : getBestSongs()) {
-			listSongs += song.getTitle() + ", ";
-		}
-		model.addAttribute("songs", listSongs.substring(0, listSongs.length()-2));
+	public String songs(Model model) {
+		model.addAttribute("visible", isVisible(getBestSongs()));
+		model.addAttribute("songs", getBestSongs());
 		return "songs";
 
 	}
 	
 	@GetMapping("/movies/{id}")
-	public String filteredMovies(@PathVariable int id, @RequestParam("name") String name, Model model) {
-		model.addAttribute("name", name);
-		String temp = "";
+	public String filteredMovies(@PathVariable int id, Model model) {
 		for(Movie movie : getBestMovies()) {
 			if(movie.getId() == id) {
-				temp = movie.getTitle();
+				model.addAttribute("visible", isVisible(movie.getTitle()));
+				model.addAttribute("movie", movie.getTitle());
 			}
 		}
-		model.addAttribute("movie", temp);
 		
 		return "movies";
 	}
 	
 	@GetMapping("/songs/{id}")
-	public String filteredSongs(@PathVariable int id, @RequestParam("name") String name, Model model) {
-		model.addAttribute("name", name);
-		String temp = "";
+	public String filteredSongs(@PathVariable int id, Model model) {
 		for(Song song : getBestSongs()) {
 			if(song.getId() == id) {
-				temp = song.getTitle();
+				model.addAttribute("visible", isVisible(song.getTitle()));
+				model.addAttribute("song", song.getTitle());
 			}
 		}
-		model.addAttribute("song", temp);
-		
 		return "songs";
 	}
 	

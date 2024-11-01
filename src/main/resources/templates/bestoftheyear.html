@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div th:replace="~{fragments :: head}"></div>
     <title>Best of the year</title>
   </head>
   <body>
-    <div>
-      <h1>Best of the year by [[${name}]]</h1>
+  	<div th:replace="~{fragments :: header}"></div>
+    <div class="container p-3">
+    	<div class="row">
+    		<div class="col justify-content-center">
+		      <h1 class="d-flex justify-content-center pb-2">Best of the year by [[${name}]]</h1>
+		      <img class="img-fluid pb-3" alt="" th:src="@{/img/banner.png}" />
+		      <div th:replace="~{fragments :: textPlaceholder}"></div>
+    		</div>
+    	</div>
     </div>
+    <div th:replace="~{fragments :: bsScript}"></div>
   </body>
 </html>

@@ -1,4 +1,4 @@
-package it.lessons.java.best_of_the_year;
+package it.lessons.java.best_of_the_year.model;
 
 public class Song {
 	
