@@ -55,11 +55,11 @@ public class BestOfTheYearController {
 	}
 	
 	private boolean isVisible(List<?> list) {
-		return list.isEmpty();
+		return !list.isEmpty();
 	}
 	
 	private boolean isVisible(String stringa) {
-		return stringa == null ? false : stringa.trim().length() == 0;
+		return stringa == null ? false : stringa.trim().length() != 0;
 	}
 
 	@GetMapping("/movies")

@@ -10,8 +10,8 @@
     	<div class="row">
     		<div class="col justify-content-center">
 		      <h1 class="d-flex justify-content-center pb-2">Best Songs</h1>
-					<div th:unless="${visible}" th:each="song : ${songs}" class="fs-3 justify-content-center d-flex"><a class="text-decoration-none" th:href="@{|/songs/${song.getId()}|}">[[${song.getTitle()}]]</a></div>
-					<div th:unless="${visible}" th:text="${song}" class="fs-3 justify-content-center d-flex"></div>
+					<div th:if="${visible}" th:each="song : ${songs}" class="fs-3 justify-content-center d-flex"><a class="text-decoration-none" th:href="@{/songs/{id} (id= {song.getId()})}" th:text="${song.getTitle()}"></a></div>
+					<div th:if="${visible}" th:text="${song}" class="fs-3 justify-content-center d-flex"></div>
 				</div>	
     	</div>
     </div>
