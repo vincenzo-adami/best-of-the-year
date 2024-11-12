@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<div th:replace="~{fragments :: head}"></div>
-		<title>Best Movies</title>
-	</head>
-	<body>
-		<div th:replace="~{fragments :: header}"></div>
-		<div class="container-xl">
-			<div class="row">
-				<div class="col justify-content-center">
-					<h1 class="d-flex justify-content-center pb-2">Best Movies</h1>
-					<div th:if="${visible}" th:each="movie : ${movies}"
-						class="fs-3 justify-content-center d-flex">
-						<a class="text-decoration-none"
-							th:href="@{|/movies/{id} (id=${movie.getId()})}"
-							th:text="${movie.getTitle()}"></a>
-					</div>
-					<div th:if="${visible}" th:text="${movie}"
-						class="fs-3 justify-content-center d-flex"></div>
-				</div>
-			</div>
-		</div>
-		<div th:replace="~{fragments :: bsScript}"></div>
-	</body>
+  <head>
+    <div th:replace="~{fragments :: head}"></div>
+    <title>Best Movies</title>
+  </head>
+  <body>
+    <div th:replace="~{fragments :: header}"></div>
+    <div class="container-xl">
+      <div class="row">
+        <div class="col justify-content-center">
+          <h1 class="d-flex justify-content-center pb-2">Best Movies</h1>
+          <div
+            th:if="${visible}"
+            th:each="movie : ${movies}"
+            class="fs-3 justify-content-center d-flex"
+          >
+            <a
+              class="text-decoration-none"
+              th:href="@{/movies/{id}(id=${movie.getId()})}"
+              th:text="${movie.getTitle()}"
+            ></a>
+          </div>
+          <div
+            th:if="${visible}"
+            th:text="${movie}"
+            class="fs-3 justify-content-center d-flex"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <div th:replace="~{fragments :: bsScript}"></div>
+  </body>
 </html>
